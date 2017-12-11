@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myc.media.dao.impl.MediaDaoImpl">
+
+   <!-- 结果映射 -->	
+   <resultMap id="mediaResult" type="com.myc.media.model.Media" >
+     <result column="id" property="id" jdbcType="VARCHAR" />
+     <result column="file_name" property="fileName" jdbcType="VARCHAR"/>
+     <result column="media_path" property="mediaPath" jdbcType="VARCHAR" />
+     <result column="media_size" property="mediaSize" jdbcType="BIGINT" />
+     <result column="media_status" property="mediaStatus" jdbcType="INTEGER" />
+     <result column="uploader_id" property="uploaderId" jdbcType="VARCHAR" />
+     <result column="auditor_id" property="auditorId" jdbcType="VARCHAR" />
+     <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+     <result column="creator_id" property="creator" jdbcType="VARCHAR" />
+     <result column="editor_id" property="editor" jdbcType="VARCHAR" />
+     <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+   </resultMap>
+   
+
+	<!-- 分页查询 -->
+    <select id="selectMediaPaging" resultMap="mediaResult">
+        SELECT id, file_name, media_size ,media_status, uploader_id
+        FROM t_media
+        <if test="mediaName != null and mediaName != ''">
+            <where>
+                file_name Like CONCAT('%',#{mediaName},'%')
+            </where>
+        </if>
+        <if test="order != null">
+            ORDER BY ${order}
+        </if>
+    </select>
+
+    <!-- 根据主键查询 -->
+    <select id="findById" resultMap="mediaResult">
+        SELECT id,file_name, media_path,media_size,media_status, uploader_id, auditor_id,
+            audit_time, create_time, creator_id, editor_id,edit_time
+        FROM  t_media
+        WHERE id = #{id}
+    </select>
+    
+    <!-- 根据md5查询 -->
+    <select id="findByMd5" resultType="java.lang.Integer">
+        SELECT count(id) counter
+        FROM t_media
+        WHERE file_md5 = #{_parameter}
+    </select>
+
+    <!-- 新增 -->
+    <insert id="insert" parameterType="com.myc.media.model.Media">
+        INSERT INTO t_media
+        (id,file_name ,media_path, media_size, media_status, uploader_id, creator_id, file_md5)
+        VALUES
+        (#{id, jdbcType=VARCHAR}, #{fileName, jdbcType=VARCHAR} ,#{mediaPath, jdbcType=VARCHAR}, #{mediaSize, jdbcType=BIGINT},
+         #{mediaStatus, jdbcType=INTEGER}, #{uploaderId, jdbcType=VARCHAR}, #{creator, jdbcType=VARCHAR}, #{fileMd5, jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.myc.media.model.Media">
+        UPDATE t_media
+        <set>
+            <if test="mediaPath != null and mediaPath !='' ">
+                media_path = #{mediaPath, jdbcType=VARCHAR},
+            </if>
+            <if test="mediaSize != null and mediaSize != 0 ">
+                media_size = #{mediaSize, jdbcType=BIGINT},
+            </if>
+            <if test="mediaStatus != null">
+                media_status = #{mediaStatus, jdbcType=INTEGER},
+            </if>
+            <if test="auditorId != null and auditorId !='' ">
+                auditor_id = #{auditorId, jdbcType=VARCHAR},
+            </if>
+            <if test="auditTime != null ">
+                audit_time = #{auditTime, jdbcType=TIMESTAMP},
+            </if>
+            <if test="editor != null and editor !='' ">
+                editor_id = #{editor, jdbcType=VARCHAR},
+            </if>
+            <if test="fileName != null and fileName !='' ">
+                file_name = #{fileName, jdbcType=VARCHAR},
+            </if>
+        </set>
+        <where> id = #{id}</where>
+    </update>
+
+    <!-- 根据Id删除 -->
+    <delete id="delById" parameterType="java.lang.String">
+        DELETE FROM t_media WHERE id = #{id}
+    </delete>
+
+</mapper>

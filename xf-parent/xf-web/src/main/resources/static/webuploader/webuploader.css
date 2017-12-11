@@ -1,0 +1,109 @@
+.webuploader-container {
+	position: relative;
+}
+.webuploader-element-invisible {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px,1px,1px,1px);
+}
+.webuploader-pick {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	background: #fff;
+	padding: 10px 15px;
+	color: #03a9f4;
+	text-align: center;
+	border-radius: 3px;
+	overflow: hidden;
+}
+.webuploader-pick-hover {
+	background: #FFFFFF;
+}
+
+.webuploader-pick-disable {
+	opacity: 0.6;
+	pointer-events:none;
+}
+
+#uploader .queueList {
+	margin: 20px;
+	border: 3px dashed #e6e6e6;
+}
+
+#uploader .placeholder {
+	min-height: 175px;
+	padding-top: 23px;
+	text-align: center;
+	color: #cccccc;
+	font-size: 18px;
+	position: relative;
+}
+
+.item {
+	padding-bottom: 9px;
+	margin: 40px 0 20px;
+	border-top: 2px solid #eee;
+}
+
+.file-deleted-btn {
+	display: inline;
+	margin-left: 10px;
+}
+
+.btns {
+	position: absolute;
+	top: 250px;
+	right: 0px;
+	line-height: 40px;
+	width: 25%;
+}
+
+.status {
+	height: 63px;
+	border-top: 1px solid #dadada;
+	padding: 0 20px;
+	line-height: 63px;
+	vertical-align: middle;
+	position: relative;
+}
+
+.uploadBtn {
+	background: #00b7ee;
+	color: #fff;
+	border-color: transparent;
+	width: 108px;
+	float: left;
+	text-align: center;
+	border-radius: 3px;
+	margin-left: 10px;
+}
+
+.removeBtn {
+	color: #565656;
+	border: 1px solid #cfcfcf;
+	width: 108px;
+	float: left;
+	text-align: center;
+	border-radius: 3px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.state-ready{
+	border: 1px solid #cfcfcf;
+	padding: 0 18px;
+	border-radius: 3px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.success-status {
+	color: #2196F3;
+	font-size: 16px;
+}
+
+.error-status {
+	color: #2196F3;
+	font-size: 16px;
+}

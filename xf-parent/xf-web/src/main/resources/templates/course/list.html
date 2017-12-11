@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="common/meta" />
+  <div th:replace="common/common" />
+  <div th:replace="common/table" />
+</head>
+<body>
+  <div th:replace="common/nav"></div>
+  <div class="container main">
+    <!-- 面包屑 -->
+    <ol class="breadcrumb">
+      <li class="active">课程管理</li>
+    </ol>
+
+    <!-- 按钮 -->
+    <div class="pull-right" id="roleBar">
+      <button type="button" id="videoCreated" title="新增" data-toggle="tooltip" data-placement="bottom"
+              class="button button-primary button-circle">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <!-- 内容 -->
+    <div class="col-sm-12">
+      <table id="courseTable"></table>
+    </div>
+  </div>
+</body>
+</html>

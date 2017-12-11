@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="common/meta" />
+  <div th:replace="common/common" />
+  <div th:replace="common/table" />
+  <script th:src="@{/js/video/list.js}"></script>
+</head>
+<body>
+  <div th:replace="common/nav"></div>
+  <div class="container main">
+    <!-- 面包屑 -->
+    <ol class="breadcrumb">
+      <li class="active">视频管理</li>
+    </ol>
+
+    <!-- 按钮 -->
+    <div class="pull-right" id="roleBar">
+      <button type="button" id="videoCreated" title="新增" data-toggle="tooltip" data-placement="bottom"
+              class="button button-primary button-circle">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <!-- 内容 -->
+    <div class="col-sm-12">
+      <table id="videoTable"></table>
+    </div>
+  </div>
+<script type="text/javascript" th:inline="javascript">
+
+    /**
+     * 加载table
+     */
+    function loadTable(){
+        $('#videoTable').bootstrapTable({
+            sortName: 'create_time',
+            sortOrder: 'desc',
+            search: true,
+            searchAlign:'left',
+            buttonsAlign:'left',
+            toolbarAlign:'right',
+            formatSearch:function(){return '应用名称'},
+            toolbar: '#toolbar',
+            pagination: true,
+            showRefresh:true,
+            sidePagination: 'server',
+            url: globalPath + 'video/listData',
+            responseHandler: function (response) {
+                if (response.meta.success) {
+                    return response.data;
+                }
+            },
+            columns: [
+                {
+                    field: 'start',
+                    checkbox: true,
+                    class:'col-sm-1',
+
+                },{
+                    field: 'file_name',
+                    title: '视频名称',
+                    class: 'col-md-3',
+                    align:'center',
+                    searchable: true,
+                    sortable: true
+                },{
+                    field: 'media_size',
+                    title: '视频大小',
+                    class: 'col-md-3',
+                    align:'center',
+                    searchable: true,
+                },{
+                    field: 'media_status',
+                    title: '状态',
+                    class: 'col-md-2',
+                    align:'center',
+                    sortable: true,
+                    formatter:function(value){
+                        if (value == 0) {
+                           return '待审核';
+                        }
+                        if (value == 1) {
+                            return '已通过';
+                        }
+                        if (value == 2) {
+                            return '不通过';
+                        }
+                        if (value == 3) {
+                            return '已排课';
+                        }
+                    }
+                },{
+                    field: 'action',
+                    title: '操作',
+                    class: 'col-md-2',
+                    align:'center',
+                    searchable: false,
+                    sortable: false,
+                    formatter:function(value, row){
+                        var html ='';
+                        html +='<a data-toggle="tooltip" data-placement="bottom" title="审核" onclick="audit(\''+row.id+'\')"  class="margin-l8" >' +
+                            '<i  class="font18 glyphicon glyphicon-edit yellow-color"></i></a>';
+                        html +='<a data-toggle="tooltip" data-placement="bottom" title="删除" onclick="delMedia(\''+row.id+'\')"  class="margin-l8" >' +
+                            '<i  class="font18 glyphicon glyphicon-remove red-color"></i></a>';
+                        html +='<a data-toggle="tooltip" data-placement="bottom" title="查看" onclick="viewMedia(\''+row.id+'\')"  class="margin-l8" >' +
+                            '<i  class="font18 glyphicon glyphicon-eye-open bule-color"></i></a>';
+                        return html;
+                    }
+                }]
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+server:
+  port: 8081
+  tomcat:
+    uri-encoding: UTF-8
+  context-path: /xf
+spring:
+  thymeleaf:
+    cache: false
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.0.11:3306/xf?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: root
+    password: 123456
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  http:
+    multipart:
+      max-file-size: 2097152Mb
+      max-request-size: 2097152000Mb
+
+mybatis:
+  mapper-locations: classpath:/com/myc/xf/dao/mappers/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+system:
+  file:
+    base:
+      path: /usr/local
+  aes:
+    key: DD334ddwRR45*&KM

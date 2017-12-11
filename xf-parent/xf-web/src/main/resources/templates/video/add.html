@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="common/meta" />
+  <div th:replace="common/common" />
+  <div th:replace="common/valid" />
+  <div th:replace="common/webuploader" />
+  <script th:src="@{/webuploader/bigFileUploder.js}"></script>
+</head>
+<body>
+  <div th:replace="common/nav"></div>
+  <div class="container">
+    <!-- 面包屑 -->
+    <ol class="breadcrumb">
+      <li><a th:href="@{/video/list}">视频管理</a></li>
+      <li class="active">新增</li>
+    </ol>
+
+    <!-- 内容 -->
+    <div class="col-xs-12">
+      <div id="uploader">
+        <div class="queueList width200">
+          <div class="placeholder">
+            <div id="picker" class="webuploader-container" title="上传视频" data-toggle="tooltip" data-placement="bottom">
+              <div class="webuploader-pick">
+                <i class="fa fa-film fa-5x"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 文件存放容器 -->
+        <div id="fileList" class="uploader-list"></div>
+      </div>
+
+      <!-- 提示 -->
+      <div class="width200 video-file-tips">
+        <p>视频大小小于2GB</p>
+        <p>支持MP4/3GP/MID等格式</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<link rel="stylesheet"  th:href="@{/layer/skin/default/layer.css}"  />
+
+<script th:src="@{/layer/layer.js}"></script>
+<script type="text/javascript">
+    /**
+     * 鼠标事件
+     * @param obj
+     * @returns
+     */
+    var tip ;
+    function btnMouseOver(title,obj){
+        tip = layer.tips(title,obj,{tips:3});
+    }
+
+    /**
+     * 鼠标移出
+     * @returns
+     */
+    function btnMouseOut(){
+        layer.close(tip);
+    }
+
+</script>

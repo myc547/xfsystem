@@ -1,0 +1,124 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.myc</groupId>
+  <artifactId>xf-parent</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>xf-services</module>
+    <module>xf-web</module>
+  </modules>
+  <packaging>pom</packaging>
+
+  <name>xf-parent</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.jdk>1.8</project.build.jdk>
+    <ardsec.framework.version>1.0-SNAPSHOT</ardsec.framework.version>
+    <spring.noot.version>1.5.8.RELEASE</spring.noot.version>
+  </properties>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.8.RELEASE</version>
+  </parent>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.ardsec.framework</groupId>
+        <artifactId>ardsec-spring-boot-starter</artifactId>
+        <version>${ardsec.framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.ardsec.framework</groupId>
+        <artifactId>ardsec-common-controller</artifactId>
+        <version>${ardsec.framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.ardsec.framework</groupId>
+        <artifactId>ardsec-common-service</artifactId>
+        <version>${ardsec.framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.ardsec.framework</groupId>
+        <artifactId>ardsec-common-dao</artifactId>
+        <version>${ardsec.framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.ardsec.framework</groupId>
+        <artifactId>ardsec-common-entity</artifactId>
+        <version>${ardsec.framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.ardsec.framework</groupId>
+        <artifactId>ardsec-common-utils</artifactId>
+        <version>${ardsec.framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.ardsec.framework</groupId>
+        <artifactId>ardsec-common-mybatis</artifactId>
+        <version>${ardsec.framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.ardsec.framework</groupId>
+        <artifactId>ardsec-common-validation</artifactId>
+        <version>${ardsec.framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.16.18</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <version>${spring.noot.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.ardsec.framework</groupId>
+        <artifactId>ardsec-spring-boot-starter</artifactId>
+        <version>${ardsec.framework.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>6.0.6</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-fileupload</groupId>
+        <artifactId>commons-fileupload</artifactId>
+        <version>1.3.3</version>
+      </dependency>
+
+
+
+    </dependencies>
+  </dependencyManagement>
+</project>
